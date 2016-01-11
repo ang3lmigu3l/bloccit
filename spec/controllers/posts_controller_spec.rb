@@ -54,7 +54,7 @@ RSpec.describe PostsController, type: :controller do
 end
 
 describe "POST create" do
-  it "increases the number pf post by 1" do
+  it "increases the number of post by 1" do
     expect{post :create , post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post, :count).by(1)
   end
 
