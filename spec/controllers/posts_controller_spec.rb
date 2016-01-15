@@ -115,12 +115,12 @@ end
    it "deletes the post" do
      delete :destroy, {id: my_post.id}
 
-     count=post.where({id: my_post.id}).size
+     count = Post.where({id: my_post.id}).size
      expect(count).to eq 0
    end
    it "redirects to posts index" do
      delete :destroy, {id: my_post.id}
-     expect(responce).to redirect_to posts_path
+     expect(response).to redirect_to posts_path
    end
  end
 
