@@ -40,10 +40,17 @@ posts = Post.all
   body: RandomData.random_paragraph
  )
 end
-#My User test
-user = User.first
-user.update_attributes!(
-  email: 'quintana.mige@gmail.com',
+admin = User.create!(
+  name:     'Admin User',
+  email:    'admin@example.com',
+  password: 'helloworld',
+  role:     'admin'
+)
+
+# Create a member
+member = User.create!(
+  name:     'Member User',
+  email:    'member@example.com',
   password: 'helloworld'
 )
 
