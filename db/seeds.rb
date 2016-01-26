@@ -40,13 +40,20 @@ posts = Post.all
   body: RandomData.random_paragraph
  )
 end
+# Creates a admin
 admin = User.create!(
   name:     'Admin User',
   email:    'admin@example.com',
   password: 'helloworld',
   role:     'admin'
 )
-
+# Creates a moderator
+admin = User.create!(
+  name:     'moderator User',
+  email:    'mod@example.com',
+  password: 'helloworld',
+  role:     'moderator'
+)
 # Create a member
 member = User.create!(
   name:     'Member User',
