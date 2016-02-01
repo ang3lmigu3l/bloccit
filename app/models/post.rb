@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
   default_scope { order('rank DESC') }
+  scope :visible_to, -> (user) {user ? all : jions(:topic).where('topic.pulbic' => true)}
 
 
   validates :title, length: {minimum: 5}, presence: true
