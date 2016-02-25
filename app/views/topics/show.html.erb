@@ -10,16 +10,6 @@
       <br />
       <%= @topic.description %>
     </p>
-    #-----DISPLAY Topic comments here
-    <h3> Comments</h3>
-    <%= render @topic.comments %>
-    </div>
-    <% if current_user %>
-    <%= render 'comments/form', comment: Comment.new, post: @post %>
-    <% end %>
-    #------
-
-
     <% @topic.posts.each do |post| %>
       <div class="media">
         <%= render partial: 'votes/voter', locals: {post:post} %>
@@ -30,7 +20,7 @@
           </h4>
           <small>
             submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
-            <%= post.comments.count %> Comments
+            <%= render "comments/form", locals: {parent: @post.comment} %> Comments
           </small>
         </div>
       </div>
