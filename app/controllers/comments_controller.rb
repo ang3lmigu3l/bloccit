@@ -7,10 +7,10 @@ class CommentsController < ApplicationController
 
     if params[:post_id]
       @parent = Post.find(params[:post_id])
-      comment = @parent.comments.new(comment_params)
-      comment.user = current_user
+      @comment = @parent.comments.new(comment_params)
+      @comment.user = current_user
 
-      if comment.save
+      if @comment.save
         flash[:notice] = "Comment saved successfully."
         redirect_to [@post.topic, @post]
       else
@@ -18,11 +18,11 @@ class CommentsController < ApplicationController
         redirect_to [@post.topic, @post]
       end
     elsif params[:topic_id]
-      @parant = Topic.find(params[:topic_id])
-      comment = @parent.comments.new(comment_params)
-      comment.user = current_user
+      @parent = Topic.find(params[:topic_id])
+      @comment = @parent.comments.new(comment_params)
+      @comment.user = current_user
 
-      if comment.save
+      if @comment.save
         flash[:notice] = "Comment saved successfully."
         redirect_to [@post.topic, @post]
       else
@@ -35,16 +35,16 @@ class CommentsController < ApplicationController
   def destroy
     if params[:post_id]
       @parent = Post.find(params[:post_id])
-      comment = @parent.comments.find(params[:id])
+      @comment = @parent.comments.find(params[:id])
 
-      if comment.destroy
+      if @comment.destroy
         flash[:notice] = "Comment was deleted"
         redirect_to [@post.topic, @post]
       end
     elsif params[:topic_id]
       @parent = Post.find(params[:post_id])
-      comment = @parent.comments.find(params[:id])
-      if comment.destroy
+      @comment = @parent.comments.find(params[:id])
+      if @comment.destroy
         flash[:notice] = "Comment was deleted"
         redirect_to [@post.topic, @post]
       end

@@ -20,7 +20,7 @@
           </h4>
           <small>
             submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
-            <%= render "comments/form", locals: {parent: @post.comment} %> Comments
+            <%= render "comments/form", locals: {parent: @post} %> Comments
           </small>
         </div>
       </div>
