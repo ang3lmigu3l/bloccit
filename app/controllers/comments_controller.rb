@@ -12,10 +12,10 @@ class CommentsController < ApplicationController
 
       if @comment.save
         flash[:notice] = "Comment saved successfully."
-        redirect_to [@post.topic, @post]
+        redirect_to [@parent.topic, @parent]
       else
         flash[:alert] = "Comment failed to save."
-        redirect_to [@post.topic, @post]
+        redirect_to [@parent.topic, @parent]
       end
     elsif params[:topic_id]
       @parent = Topic.find(params[:topic_id])
@@ -24,10 +24,10 @@ class CommentsController < ApplicationController
 
       if @comment.save
         flash[:notice] = "Comment saved successfully."
-        redirect_to [@post.topic, @post]
+        redirect_to @parent
       else
         flash[:alert] = "Comment failed to save."
-        redirect_to [@post.topic, @post]
+        redirect_to @parent
       end
     end
   end
@@ -39,14 +39,14 @@ class CommentsController < ApplicationController
 
       if @comment.destroy
         flash[:notice] = "Comment was deleted"
-        redirect_to [@post.topic, @post]
+        redirect_to [@parent.topic, @parent]
       end
     elsif params[:topic_id]
       @parent = Post.find(params[:post_id])
       @comment = @parent.comments.find(params[:id])
       if @comment.destroy
         flash[:notice] = "Comment was deleted"
-        redirect_to [@post.topic, @post]
+        redirect_to @parent
       end
     end
   end

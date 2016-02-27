@@ -9,6 +9,10 @@
       <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
       <br />
       <%= @topic.description %>
+
+      <%= render @topic.comments  %>
+      <%= render 'comments/form', comment: Comment.new, parent: @topic %>
+
     </p>
     <% @topic.posts.each do |post| %>
       <div class="media">
@@ -20,7 +24,7 @@
           </h4>
           <small>
             submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
-            <%= render "comments/form", locals: {parent: @post} %> Comments
+            <%= post.comments.count %> Comments
           </small>
         </div>
       </div>
